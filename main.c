@@ -110,7 +110,7 @@ void send_LCD_text(char text[], char line, char pos){
     send_LCD_byte(0,line+pos); //Send line and position command
 
     for(i=0;i<text_size;i++){    //Stay in loop while send all the texts
-        send_LCD_byte(1,text[i]);     //Envia caracter por caracter o texto ao LCD
+        send_LCD_byte(1,text[i]);     // Send each character one by one to LCD
         }
 }
 
@@ -219,8 +219,7 @@ void start_LCD_8bit_pins(void){
     P3OUT &= ~BIT1;
     delay_ms(2);
 
-    //Set operating mode (4 or 8 bits)
-    send_LCD_byte(0,0x38); // 0x0011.1000 FUNCTION SET - 4 bits, 2 lines, 5x7 dots
+    send_LCD_byte(0,0x38); // 0x0011.1000 FUNCTION SET - 8 bits, 2 lines, 5x7 dots
     send_LCD_byte(0,0x0F); // 0x0000.1111 DISPLAY CONTROL - Display on, no cursor
     send_LCD_byte(0,0x01); // CLEAN LCD
     send_LCD_byte(0,0x06); // ENTRY MODE SET - Shift cursor to the right each written character
